@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 
+// Se define a los pokémons 
 const pokemons = [
     { nombre: "Pikachu", tipo: "Eléctrico", ataque: "Impactrueno" },
     { nombre: "Charizard", tipo: "Fuego", ataque: "Lanzallamas" },
@@ -13,6 +14,9 @@ const pokemons = [
     { nombre: "Umbreon", tipo: "Siniestro", ataque: "Pulso Umbrío" },
     { nombre: "Gyarados", tipo: "Agua", ataque: "Hidrobomba" }
 ]
+
+// En la direccón utilizamos random para el caso especial 
+// en el que deseamos un pokemon al azar 
 router.get("/random", (req, res) => {
     console.log("ENTRANDO A RANDOM")
     const randomIndex = Math.floor(Math.random() * pokemons.length)
@@ -20,6 +24,8 @@ router.get("/random", (req, res) => {
     res.json(randomPokemon)
 })
 
+// En caso de querer ingresa a uno de los pokemon por su nombre 
+// colocamos el nombre de estos como parámetro 
 router.get("/:nombre", (req, res) => {
     const nombre = req.params.nombre
     const pokemon = pokemons.find(p => p.nombre.toLowerCase() === nombre.toLowerCase())
